@@ -18,6 +18,11 @@ export default async function MealsPage() {
               Category: <strong>{meal.category.title}</strong>
             </p>
           )}
+          {meal.meal_type && (
+            <p>
+              Meal type: <strong>{meal.meal_type.name}</strong>
+            </p>
+          )}
           <h2>{meal.title}</h2>
           <p>{meal.summary}</p>
 

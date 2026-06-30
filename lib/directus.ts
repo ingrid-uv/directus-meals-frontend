@@ -15,6 +15,14 @@ export type Category = {
   slug: string;
 };
 
+/* ---------------- Meal Type ---------------- */
+
+export type MealType = {
+  id: number;
+  name: string;
+  slug: string;
+};
+
 
 /* ---------------- Meals ---------------- */
 
@@ -28,6 +36,7 @@ export type Meal = {
   creator: string;
   creator_email: string;
   category: Category | null;
+  meal_type: MealType;
 };
 
 type DirectusMeal = {
@@ -40,6 +49,7 @@ type DirectusMeal = {
   creator: string;
   creator_email: string;
   category: Category | null;
+  meal_type: MealType;
 };
 
 function transformMeal(meal: DirectusMeal): Meal {
@@ -51,7 +61,7 @@ function transformMeal(meal: DirectusMeal): Meal {
 
 export async function getMeals(): Promise<Meal[]> {
   const response = await fetch(
-    `${DIRECTUS_URL}/items/meals?fields=id,title,slug,summary,image,creator,creator_email,category.title,category.slug`,
+    `${DIRECTUS_URL}/items/meals?fields=id,title,slug,summary,image,creator,creator_email,category.title,category.slug,meal_type.id,meal_type.name,meal_type.slug`,
     {
       cache: 'no-store',
     }
