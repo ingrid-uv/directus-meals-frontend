@@ -6,14 +6,14 @@ export default async function HomePage() {
   const slides = await getHomeSlides();
 
   return (
-    <main className="min-h-screen bg-stone-100">
+    <main className="min-h-screen bg-[#F6FBF8]">
       <div className="flex flex-col gap-8 justify-center min-w-[80%] w-full lg:max-w-[80%] lg:mx-auto py-10">
         <div className="px-10 lg:px-20 text-center">
           <h1 className="text-4xl font-bold text-stone-900">Welcome to My Page</h1>
           <p className="mt-4 text-lg text-stone-600">Quick and simple recipes using fresh, accessible ingredients for an optimal diet—the foundation of your mental and physical health.</p>
        </div>
        <HomeSlider slides={slides} />    
-        <Link href="/meals" className="w-fit bg-amber-400 text-white p-4 rounded-2xl">View meals</Link>
+        <Link href="/meals" className="w-fit bg-[#ff9f8a] hover:bg-[#ffbfa6] shadow-md transition-all duration-300 text-black p-4 hover:shadow-lg hover:-translate-y-0.5">View meals</Link>
       </div>     
     </main>
   );

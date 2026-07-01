@@ -76,6 +76,31 @@ export async function getMeals(): Promise<Meal[]> {
   return json.data.map(transformMeal);
 }
 
+export async function getMeal(slug: string): Promise<Meal | null> {
+  const response = await fetch(
+    `${DIRECTUS_URL}/items/meals?filter[slug][_eq]=${encodeURIComponent(
+      slug
+    )}&fields=id,title,slug,summary,instructions,image,creator,creator_email,category.title,category.slug,meal_type.id,meal_type.name,meal_type.slug&limit=1`,
+    {
+      cache: 'no-store',
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error('Failed to fetch meal');
+  }
+
+  const json: DirectusResponse<DirectusMeal[]> = await response.json();
+
+  const meal = json.data[0];
+
+  if (!meal) {
+    return null;
+  }
+
+  return transformMeal(meal);
+}
+
 /* ---------------- Home Slider / Gallery ---------------- */
 
 export type HomeSlide = {
